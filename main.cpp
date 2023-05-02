@@ -3,10 +3,6 @@
 const int WINDOW_HEIGHT = 800, WINDOW_WIDTH = 800;
 const char* WINDOW_TITLE = "OpenGL zaidimai";
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-	glViewport(0, 0, width, height);
-}
-
 int main() {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -30,9 +26,18 @@ int main() {
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
 	while (!glfwWindowShouldClose(window))
-	{
-		glfwSwapBuffers(window);
+	{		
+		//input
+		processInput(window);
+
+		//rendering commands
+		//glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		ClearWindowColor(117, 201, 235, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		//swap buffers
 		glfwPollEvents();
+		glfwSwapBuffers(window);
 	}
 
 	glfwTerminate();
