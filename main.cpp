@@ -3,11 +3,6 @@
 const int WINDOW_HEIGHT = 800, WINDOW_WIDTH = 800;
 const char* WINDOW_TITLE = "OpenGL zaidimai";
 
-void test(unsigned int& VBO, unsigned int& VAO, unsigned int& EBO, float vertices[], unsigned int indices[]) {
-	
-	
-}
-
 int main() {
 	//Initializing glfw
 	InitGLFW();
@@ -21,16 +16,28 @@ int main() {
 	if (InitGlad() == -1) return -1;
 	
 	//Dealing with shaders
+	/*float vertices[] = {
+	  // l - r| t - b   
+		 0.7f,  0.7f, 0.0f, // top right +
+		-0.7f, -0.7f, 0.0f, // bottom left +
+		 0.65f, -0.7f, 0.0f, // bottom right bottom +
+		 0.7f, -0.65f, 0.0f, // bottom right right +
+		-0.65f,  0.7f, 0.0f  //top left top +
+		-0.7f,  0.65f, 0.0f  //top left left
+	};*/
+
 	float vertices[] = {
-		 0.5f,  0.5f, 0.0f, // top right
-		 0.5f, -0.5f, 0.0f, // bottom right
-		-0.5f, -0.5f, 0.0f, // bottom left
-		-0.5f,  0.5f, 0.0f  //top left
+		-0.70f,   0.65f, 0.0f, // top left: bottom left triangle
+		-0.65f,  0.70f,  0.0f, // top left: top right triangle
+		0.70f,   0.70f, 0.0f, // top right: top right triangle
+		-0.70f,  -0.70f, 0.0f, // bottom left: bottom left triangle
+		 0.65f, -0.70f,  0.0f, // bottom right: bottom left triangle
+		 0.70f,  -0.65f, 0.0f  // bottom right: top right triangle
 	};
 
 	unsigned int indices[] = {
-		0, 1, 3, // top-right triangle
-		1, 2, 3  // bottom-left triangle
+		0, 3, 4, // top-right triangle
+		1, 2, 5  // bottom-left triangle
 	};
 
 	unsigned int vertexShader, fragmentShader, shaderProgram, VBO, VAO, EBO;
