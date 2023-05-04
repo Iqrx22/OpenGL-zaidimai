@@ -66,16 +66,7 @@ void BuildVertexShader(unsigned int &vertexShader) {
 	}
 }
 
-void BuildFragmentShader(unsigned int &fragmentShader) {
-	const char* fragmentShaderSource =
-		"#version 460 core\n"
-		"out vec4 FragColor;\n\n"
-
-		"void main()\n"
-		"{\n"
-		" FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-		"}\0";
-
+void BuildFragmentShader(unsigned int &fragmentShader, const char* fragmentShaderSource) {
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
 	glCompileShader(fragmentShader);
@@ -108,7 +99,7 @@ void LinkShaders(unsigned int& shaderProgram, unsigned int& vertexShader, unsign
 	glDeleteShader(fragmentShader);
 }
 
-void BufferObjectGenerators1(unsigned int &VBO, unsigned int &VAO, unsigned int &EBO) {
+/*void BufferObjectGenerators1(unsigned int& VBO, unsigned int& VAO, unsigned int& EBO) {
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
@@ -126,4 +117,4 @@ void BufferObjectGenerators2(unsigned int& VBO, unsigned int& VAO, unsigned int&
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glBindVertexArray(0);
-}
+}*/

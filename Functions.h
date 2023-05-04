@@ -14,9 +14,9 @@ int InitWindow(GLFWwindow* window);
 int InitGlad();
 
 void BuildVertexShader(unsigned int &vertexShader);
-void BuildFragmentShader(unsigned int &fragmentShader);
+void BuildFragmentShader(unsigned int &fragmentShader, const char* fragmentShaderSource);
 void LinkShaders(unsigned int& shaderProgram, unsigned int& vertexShader, unsigned int& fragmentShader);
 
-void BufferObjectGenerators1(unsigned int &VBO, unsigned int &VAO, unsigned int &EBO);
-void BufferObjectGenerators2(unsigned int& VBO, unsigned int& VAO, unsigned int& EBO);
+//void BufferObjectGenerators1(unsigned int &VBO, unsigned int &VAO);
+//void BufferObjectGenerators2(unsigned int& VBO, unsigned int& VAO);
 
