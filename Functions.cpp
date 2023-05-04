@@ -107,3 +107,23 @@ void LinkShaders(unsigned int& shaderProgram, unsigned int& vertexShader, unsign
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 }
+
+void BufferObjectGenerators1(unsigned int &VBO, unsigned int &VAO, unsigned int &EBO) {
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &EBO);
+
+	glBindVertexArray(VAO);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+}
+
+void BufferObjectGenerators2(unsigned int& VBO, unsigned int& VAO, unsigned int& EBO) {
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glBindVertexArray(0);
+}
