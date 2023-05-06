@@ -25,7 +25,7 @@ int main() {
 
 	unsigned int indices[] = {
 		0, 1, 3, // top-right triangle
-		1, 2, 3  // bottom-left triangle
+		//1, 2, 3  // bottom-left triangle
 	};
 
 	Shader myShader("Shader1.vertexShader", "Shader1.fragmentShader");
@@ -50,7 +50,6 @@ int main() {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glBindVertexArray(0);
-	int i = 0;
 
 	while (!glfwWindowShouldClose(window))
 	{		
