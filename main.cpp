@@ -3,11 +3,6 @@
 const int WINDOW_HEIGHT = 800, WINDOW_WIDTH = 800;
 const char* WINDOW_TITLE = "OpenGL zaidimai";
 
-void test(unsigned int& VBO, unsigned int& VAO, unsigned int& EBO, float vertices[], unsigned int indices[]) {
-	
-	
-}
-
 int main() {
 	//Initializing glfw
 	InitGLFW();
@@ -33,10 +28,9 @@ int main() {
 		1, 2, 3  // bottom-left triangle
 	};
 
-	unsigned int vertexShader, fragmentShader, shaderProgram, VBO, VAO, EBO;
-	BuildVertexShader(vertexShader);
-	BuildFragmentShader(fragmentShader);
-	LinkShaders(shaderProgram, vertexShader, fragmentShader);
+	Shader myShader("Shader1.vertexShader", "Shader1.fragmentShader");
+
+	unsigned int VBO, VAO, EBO;
 	
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
@@ -56,6 +50,7 @@ int main() {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glBindVertexArray(0);
+	int i = 0;
 
 	while (!glfwWindowShouldClose(window))
 	{		
@@ -66,13 +61,11 @@ int main() {
 		ClearWindowColor(117, 201, 235, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glUseProgram(shaderProgram);
+		myShader.use();
 
 		float timeValue = glfwGetTime();
-		float greenValue = sin(timeValue) / 2.0f + 0.5f;
-		int vertexColorLocation = glGetUniformLocation(shaderProgram,
-			"myColor");
-		glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+		float greenValue = static_cast<float>(sin(timeValue) / 2.0 + 0.5);
+		myShader.uniform4f("myColor", 0.0f, greenValue, 0.0f, 1.0f);
 
 		glBindVertexArray(VAO); 
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -86,7 +79,7 @@ int main() {
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &EBO);
-	glDeleteProgram(shaderProgram);
+	myShader.deleteProgram();
 
 	glfwTerminate();
 	return 0;
