@@ -70,10 +70,10 @@ void BuildFragmentShader(unsigned int &fragmentShader) {
 	const char* fragmentShaderSource =
 		"#version 460 core\n"
 		"out vec4 FragColor;\n\n"
-
+		"uniform vec4 myColor;\n\n"
 		"void main()\n"
 		"{\n"
-		" FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+		" FragColor = myColor;\n"
 		"}\0";
 
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
